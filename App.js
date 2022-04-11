@@ -1,5 +1,5 @@
 import {View, Text, StyleSheet} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from './Screens/Home';
@@ -11,10 +11,13 @@ import AddIcon from './assets/icons/Add.svg';
 import AllIcon from './assets/icons/All.svg';
 import CompleteIcon from './assets/icons/Complete.svg';
 import colors from './assets/constants/colors';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import SplashScreen from 'react-native-splash-screen';
 
 const App = () => {
   const Tab = createBottomTabNavigator();
+  useEffect(() => {
+    SplashScreen.hide();
+  });
 
   return (
     <NavigationContainer>
