@@ -1,11 +1,11 @@
 import {View, Text, StyleSheet, Image} from 'react-native';
 import React from 'react';
-import color from '../assets/constants/color';
+import colors from '../assets/constants/colors';
 
 const Home = () => {
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.headerContainer(color)}>
+      <View style={styles.headerContainer(colors)}>
         <Image
           style={styles.icon}
           source={require('../assets/images/patient.png')}
@@ -21,7 +21,7 @@ const Home = () => {
             <Text style={styles.medTime}>9:30 AM</Text>
             <Text style={styles.medDays}>S</Text>
             <Text style={styles.medDays}>M</Text>
-            <View style={styles.currentDay(color)}>
+            <View style={styles.currentDay(colors)}>
               <Text style={styles.medDays}>T</Text>
             </View>
             <Text style={styles.medDays}>W</Text>
@@ -37,7 +37,7 @@ const Home = () => {
             <Text style={styles.medTime}>9:30 AM</Text>
             <Text style={styles.medDays}>S</Text>
             <Text style={styles.medDays}>M</Text>
-            <View style={styles.currentDay(color)}>
+            <View style={styles.currentDay(colors)}>
               <Text style={styles.medDays}>T</Text>
             </View>
             <Text style={styles.medDays}>W</Text>
@@ -55,9 +55,9 @@ const Home = () => {
 
 const styles = StyleSheet.create({
   mainContainer: {},
-  headerContainer: color => ({
+  headerContainer: colors => ({
     flexDirection: 'row',
-    backgroundColor: color.primary,
+    backgroundColor: colors.primary,
     alignItems: 'center',
   }),
   icon: {
@@ -109,8 +109,8 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     marginRight: 6,
   },
-  currentDay: color => ({
-    backgroundColor: color.primary,
+  currentDay: colors => ({
+    backgroundColor: colors.primary,
     opacity: 0.5,
     borderRadius: 50,
   }),
