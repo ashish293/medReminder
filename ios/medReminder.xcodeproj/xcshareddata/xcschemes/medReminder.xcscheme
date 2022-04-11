@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "medReminder.app"
-               BlueprintName = "medReminder"
-               ReferencedContainer = "container:medReminder.xcodeproj">
+               BuildableName = "medicinereminder.app"
+               BlueprintName = "medicinereminder"
+               ReferencedContainer = "container:medicinereminder.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "medReminderTests.xctest"
-               BlueprintName = "medReminderTests"
-               ReferencedContainer = "container:medReminder.xcodeproj">
+               BuildableName = "medicinereminderTests.xctest"
+               BlueprintName = "medicinereminderTests"
+               ReferencedContainer = "container:medicinereminder.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "medReminder.app"
-            BlueprintName = "medReminder"
-            ReferencedContainer = "container:medReminder.xcodeproj">
+            BuildableName = "medicinereminder.app"
+            BlueprintName = "medicinereminder"
+            ReferencedContainer = "container:medicinereminder.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "medReminder.app"
-            BlueprintName = "medReminder"
-            ReferencedContainer = "container:medReminder.xcodeproj">
+            BuildableName = "medicinereminder.app"
+            BlueprintName = "medicinereminder"
+            ReferencedContainer = "container:medicinereminder.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
