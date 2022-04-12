@@ -41,13 +41,14 @@ const App = () => {
             paddingBottom: 6,
             paddingTop: 4,
           },
-        })}>
+        })}
+        >
         <Tab.Screen
           name="Home"
           component={Home}
           options={{headerShown: false}}
         />
-        <Tab.Screen name="Add" component={Addmed} />
+        <Tab.Screen name="Add" component={Addmed} options={{headerShown:false}} />
         <Tab.Screen name="All" component={All} />
         <Tab.Screen name="Progress" component={Progress} />
       </Tab.Navigator>
