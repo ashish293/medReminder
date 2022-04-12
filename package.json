@@ -1,5 +1,5 @@
 {
-  "name": "medreminder",
+  "name": "medicinereminder",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "react-native": "0.68.0",
     "react-native-safe-area-context": "^4.2.4",
     "react-native-screens": "^3.13.1",
+    "react-native-splash-screen": "^3.3.0",
     "react-native-svg": "^12.3.0",
     "react-native-svg-transformer": "^1.0.0",
     "react-native-vector-icons": "^9.1.0"

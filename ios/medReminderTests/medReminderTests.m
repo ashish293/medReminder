@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface medReminderTests : XCTestCase
+@interface medicinereminderTests : XCTestCase
 
 @end
 
-@implementation medReminderTests
+@implementation medicinereminderTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {
