@@ -1,6 +1,7 @@
 import {View, Text, Button} from 'react-native';
 import React, {useEffect} from 'react';
 import notifee, {TimestampTrigger, TriggerType} from '@notifee/react-native';
+import Not from '../assets/icons/Not.png';
 
 const All = () => {
   useEffect(() => {
@@ -10,7 +11,7 @@ const All = () => {
     });
   });
   async function onCreateTriggerNotification() {
-    const date = new Date(Date.now() + 10 * 1000);
+    const date = new Date(Date.now() + 1 * 1000);
 
     // Create a time-based trigger
     const trigger: TimestampTrigger = {
@@ -21,10 +22,25 @@ const All = () => {
     // Create a trigger notification
     await notifee.createTriggerNotification(
       {
-        title: 'Meeting with Jane',
-        body: 'Today at 11:20am',
+        title: 'Calpol',
+        body: '1 tablet',
         android: {
           channelId: 'default',
+          smallIcon: 'ic_notification',
+
+          color: '#4caf50',
+          // icon: Home,
+          actions: [
+            {
+              title: '<p ><b>Confirm</b> &#10004;</p>',
+              pressAction: {id: 'confirm'},
+            },
+            {
+              title:
+                '<p style="color:black "><b>Snooze 30 min</b> &#x23f2; </p>',
+              pressAction: {id: 'snooze'},
+            },
+          ],
         },
       },
       trigger,
