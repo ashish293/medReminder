@@ -1,7 +1,6 @@
 import {View, Text, Button} from 'react-native';
 import React, {useEffect} from 'react';
 import notifee, {TimestampTrigger, TriggerType} from '@notifee/react-native';
-import Not from '../assets/icons/Not.png';
 
 const All = () => {
   useEffect(() => {
@@ -11,7 +10,7 @@ const All = () => {
     });
   });
   async function onCreateTriggerNotification() {
-    const date = new Date(Date.now() + 1 * 1000);
+    const date = new Date(Date.now() + 5 * 1000);
 
     // Create a time-based trigger
     const trigger: TimestampTrigger = {
