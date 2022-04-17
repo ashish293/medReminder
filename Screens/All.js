@@ -1,12 +1,37 @@
 import {View, Text, Button} from 'react-native';
 import React, {useEffect} from 'react';
-import notifee, {TimestampTrigger, TriggerType} from '@notifee/react-native';
+import notifee, {
+  TimestampTrigger,
+  TriggerType,
+  AndroidImportance,
+  EventType,
+} from '@notifee/react-native';
 
 const All = () => {
   useEffect(() => {
+    notifee.onBackgroundEvent(async ({type, detail}) => {
+      // console.log('detail', detail);
+      if (type === EventType.PRESS) {
+        console.log('User pressed the notification.', detail.pressAction.id);
+      } else if (type === EventType.ACTION_PRESS) {
+        console.log('User pressed the action button.', detail.pressAction.id);
+      }
+    });
+    notifee.onForegroundEvent(async ({type, detail}) => {
+      // console.log('detail', detail);
+      if (type === EventType.PRESS) {
+        console.log('User pressed the notification.', detail.pressAction.id);
+      } else if (type === EventType.ACTION_PRESS) {
+        console.log('User pressed the action button.', detail.pressAction.id);
+      }
+    });
     const channelId = notifee.createChannel({
       id: 'default',
       name: 'Default Channel',
+      importance: AndroidImportance.HIGH,
+      sound: 'notifee',
+      vibration: true,
+      vibrationPattern: [300, 500],
     });
   });
   async function onCreateTriggerNotification() {
@@ -26,13 +51,19 @@ const All = () => {
         android: {
           channelId: 'default',
           smallIcon: 'ic_notification',
-
+          importance: AndroidImportance.HIGH,
+          sound: 'notifee',
           color: '#4caf50',
+          vibrationPattern: [300, 500],
+          pressAction: {id: 'main', launchActivity: 'default'},
           // icon: Home,
           actions: [
             {
               title: '<p ><b>Confirm</b> &#10004;</p>',
-              pressAction: {id: 'confirm'},
+              pressAction: {
+                id: 'confirm',
+                launchActivity: 'default',
+              },
             },
             {
               title:

@@ -12,45 +12,11 @@ import AllIcon from './assets/icons/All.svg';
 import CompleteIcon from './assets/icons/Complete.svg';
 import colors from './assets/constants/colors';
 import SplashScreen from 'react-native-splash-screen';
-import notifee from '@notifee/react-native';
-import AutoStart from 'react-native-autostart';
 
 const App = () => {
-  const checkBattery = async () => {
-    // 1. checks if battery optimization is enabled
-    const batteryOptimizationEnabled =
-      await notifee.isBatteryOptimizationEnabled();
-    console.log('batteryOptimizationEnabled', batteryOptimizationEnabled);
-    if (batteryOptimizationEnabled) {
-      // 2. ask your users to disable the feature
-      Alert.alert(
-        'Restrictions Detected',
-        'To ensure notifications are delivered, please disable battery optimization for the app.',
-        [
-          // 3. launch intent to navigate the user to the appropriate screen
-          {
-            text: 'Open settings',
-            onPress: async () =>
-              await notifee.openBatteryOptimizationSettings(),
-          },
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
-        ],
-        {cancelable: false},
-      );
-    }
-  };
-
-  if (AutoStart.isCustomAndroid()) {
-    AutoStart.startAutostartSettings();
-  }
   const Tab = createBottomTabNavigator();
   useEffect(() => {
     SplashScreen.hide();
-    checkBattery();
   });
 
   return (
