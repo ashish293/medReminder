@@ -14,7 +14,21 @@ const All = () => {
       if (type === EventType.PRESS) {
         console.log('User pressed the notification.', detail.pressAction.id);
       } else if (type === EventType.ACTION_PRESS) {
-        console.log('User pressed the action button.', detail.pressAction.id);
+        switch (detail.pressAction.id) {
+          case 'confirm':
+            console.log('User pressed confirm.');
+            break;
+          case 'snooze':
+            console.log('User pressed snooze.');
+            onCreateTriggerNotification(
+              'Calpol',
+              1,
+              new Date(Date.now() + 5 * 1000),
+            );
+            break;
+          default:
+            console.log('User pressed unknown action.');
+        }
       }
     });
     notifee.onForegroundEvent(async ({type, detail}) => {
@@ -34,8 +48,8 @@ const All = () => {
       vibrationPattern: [300, 500],
     });
   });
-  async function onCreateTriggerNotification() {
-    const date = new Date(Date.now() + 5 * 1000);
+  const onCreateTriggerNotification = async (title, qty, date) => {
+    // const date = new Date(Date.now() + 5 * 1000);
 
     // Create a time-based trigger
     const trigger: TimestampTrigger = {
@@ -75,11 +89,20 @@ const All = () => {
       },
       trigger,
     );
-  }
+  };
   return (
     <View>
       <Text>All</Text>
-      <Button title="notify" onPress={onCreateTriggerNotification} />
+      <Button
+        title="notify"
+        onPress={() =>
+          onCreateTriggerNotification(
+            'Calpol',
+            1,
+            new Date(Date.now() + 5 * 1000),
+          )
+        }
+      />
     </View>
   );
 };
