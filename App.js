@@ -12,6 +12,58 @@ import AllIcon from './assets/icons/All.svg';
 import CompleteIcon from './assets/icons/Complete.svg';
 import colors from './assets/constants/colors';
 import SplashScreen from 'react-native-splash-screen';
+import onCreateNotification from './utils/NotificationManager';
+import notifee, {
+  TimestampTrigger,
+  TriggerType,
+  AndroidImportance,
+  EventType,
+} from '@notifee/react-native';
+
+notifee.onBackgroundEvent(async ({type, detail}) => {
+  // console.log('detail', detail);
+  if (type === EventType.PRESS) {
+    console.log('User pressed the notification.', detail.pressAction.id);
+  } else if (type === EventType.ACTION_PRESS) {
+    switch (detail.pressAction.id) {
+      case 'confirm':
+        console.log('User pressed confirm.');
+        break;
+      case 'snooze':
+        console.log('User pressed snooze.');
+        onCreateNotification(
+          detail.pressAction.id,
+          1,
+          new Date(Date.now() + 5 * 1000),
+        );
+        break;
+      default:
+        console.log('User pressed unknown action.');
+    }
+  }
+});
+notifee.onForegroundEvent(async ({type, detail}) => {
+  // console.log('detail', detail);
+  if (type === EventType.PRESS) {
+    console.log('User pressed the notification.', detail.pressAction.id);
+  } else if (type === EventType.ACTION_PRESS) {
+    switch (detail.pressAction.id) {
+      case 'confirm':
+        console.log('User pressed confirm.');
+        break;
+      case 'snooze':
+        console.log('User pressed snooze.');
+        onCreateNotification(
+          detail.pressAction.id,
+          1,
+          new Date(Date.now() + 5 * 1000),
+        );
+        break;
+      default:
+        console.log('User pressed unknown action.');
+    }
+  }
+});
 
 const App = () => {
   const Tab = createBottomTabNavigator();
