@@ -21,7 +21,12 @@ const Addmed = () => {
   const [doses, setDoses] = useState();
   const [dayCheck, setDayCheck] = useState(new Array(7).fill(false));
   const [timeObj, setTimeObj] = useState([]);
-  const [selectedTime, setSelectedTime] = useState(new Array(4).fill(false));
+  const [selectedTime, setSelectedTime] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
   const [totalDays, setTotalDays] = useState();
   const [showDate, setShowDate] = useState(false);
   const [currentDate, setCurrenttDate] = useState();
@@ -40,7 +45,7 @@ const Addmed = () => {
     }
     if (frequency == 7) {
       setDayCheck(val => {
-        return dayCheck.map((elem, ind) => {
+        return val.map((elem, ind) => {
           if (id == ind) {
             return !elem;
           } else return elem;
@@ -90,18 +95,31 @@ const Addmed = () => {
   };
 
   const submitButton = () => {
-    Alert.alert('Medicine added');
     const obj = {
       title: medName,
       startDate: currentDate,
       timing: timeObj,
       noOfDay: totalDays,
     };
-    NotificationManager.onCreateChannel(obj);
     console.log(obj);
+    NotificationManager.onCreateChannel(obj);
+    Alert.alert('Medicine added');
+    resetButton();
   };
-  const ResetButton = () => {
-    console.log('Reset');
+
+  const resetButton = () => {
+    setMedName('');
+    setFrequency('');
+    setDayCheck(arr => {
+      return arr.map(elem => {
+        return (elem = false);
+      });
+    });
+    setDoses(0);
+    setTimeObj([]);
+    setCurrenttDate('');
+    setTotalDays('');
+    console.log('reset');
   };
 
   return (
@@ -284,8 +302,10 @@ const Addmed = () => {
               </TouchableOpacity>
             </View>
 
-            <View style={styles.ResetContainer} onPress={ResetButton}>
-              <TouchableOpacity style={styles.ResetButton}>
+            <View style={styles.ResetContainer}>
+              <TouchableOpacity
+                style={styles.ResetButton}
+                onPress={resetButton}>
                 <Text style={styles.ResetTitle}>Reset</Text>
               </TouchableOpacity>
             </View>
