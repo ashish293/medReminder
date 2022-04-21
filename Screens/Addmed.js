@@ -8,8 +8,8 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
-import React, {useState, useEffect} from 'react';
+import { Picker } from '@react-native-picker/picker';
+import React, { useState, useEffect } from 'react';
 import colors from '../assets/constants/colors';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import onCreateChannel from '../utils/NotificationManager';
@@ -20,7 +20,7 @@ const Addmed = () => {
   const [doses, setDoses] = useState();
   const [dayCheck, setDayCheck] = useState(new Array(7).fill(false));
   const [timeObj, setTimeObj] = useState([]);
-  const [selectedTime, setSelectedTime] = useState(new Array(4).fill(false));
+  const [selectedTime, setSelectedTime] = useState([ false, false, false, false]);
   const [totalDays, setTotalDays] = useState();
   const [showDate, setShowDate] = useState(false);
   const [currentDate, setCurrenttDate] = useState();
@@ -38,8 +38,8 @@ const Addmed = () => {
       });
     }
     if (frequency == 7) {
-      setDayCheck(val => {
-        return dayCheck.map((elem, ind) => {
+      setDayCheck((val) => {
+        return val.map((elem, ind) => {
           if (id == ind) {
             return !elem;
           } else return elem;
@@ -48,8 +48,8 @@ const Addmed = () => {
     }
   };
 
-  const getTime = id => {
-    setSelectedTime(arr => {
+  const getTime = (id) => {
+    setSelectedTime((arr) => {
       return arr.map((val, index) => {
         if (id === index) {
           return !val;
@@ -58,8 +58,8 @@ const Addmed = () => {
     });
   };
   const handleTimePicker = (index, selectedTime) => {
-    setSelectedTime(arr => {
-      return arr.map(val => {
+    setSelectedTime((arr) => {
+      return arr.map((val) => {
         return (val = false);
       });
     });
@@ -96,11 +96,23 @@ const Addmed = () => {
       noOfDay: totalDays,
     };
     onCreateChannel(obj);
-    console.log(obj);
+    resetButton();
   };
-  const ResetButton = () => {
-    console.log('Reset');
-  };
+
+const resetButton=()=>{
+  setMedName('');
+  setFrequency('');
+  setDayCheck((arr) => {
+    return arr.map((elem) => {
+      return (elem = false);});
+    });
+  setDoses(0);
+  setTimeObj([]);
+  setCurrenttDate('');
+  setTotalDays('');
+    console.log('reset');
+}
+
 
   return (
     <KeyboardAvoidingView>
@@ -140,7 +152,7 @@ const Addmed = () => {
                     });
                   }
                 }}
-                style={{height: 30, width: 135}}>
+                style={{ height: 30, width: 135 }}>
                 {/* <Picker.Item label='Select' value={0} /> */}
                 <Picker.Item label="Daily" value={0} />
                 <Picker.Item label="Weekly" value={1} />
@@ -199,10 +211,10 @@ const Addmed = () => {
                 onValueChange={value => {
                   setDoses(value);
                   setTimeObj(
-                    new Array(parseInt(value)).fill({hours: 0, minutes: 0}),
+                    new Array(parseInt(value)).fill({ hours: 0, minutes: 0 }),
                   );
                 }}
-                style={{height: 30, width: 130}}>
+                style={{ height: 30, width: 130 }}>
                 <Picker.Item label="Select" value="0" />
                 <Picker.Item label="1" value="1" />
                 <Picker.Item label="2" value="2" />
@@ -248,9 +260,8 @@ const Addmed = () => {
               <Text style={styles.dateButtonTitle}>
                 Starting Date :{' '}
                 {currentDate
-                  ? `${currentDate.getDate()}/${
-                      currentDate.getMonth() + 1
-                    }/${currentDate.getFullYear()}`
+                  ? `${currentDate.getDate()}/${currentDate.getMonth() + 1
+                  }/${currentDate.getFullYear()}`
                   : 'DD/MM/YYYY'}
                 {showDate && (
                   <DateTimePicker
@@ -282,8 +293,8 @@ const Addmed = () => {
               </TouchableOpacity>
             </View>
 
-            <View style={styles.ResetContainer} onPress={ResetButton}>
-              <TouchableOpacity style={styles.ResetButton}>
+            <View style={styles.ResetContainer} >
+              <TouchableOpacity style={styles.ResetButton} onPress={resetButton}>
                 <Text style={styles.ResetTitle}>Reset</Text>
               </TouchableOpacity>
             </View>
