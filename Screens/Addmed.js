@@ -7,12 +7,13 @@ import {
   TouchableOpacity,
   ScrollView,
   KeyboardAvoidingView,
+  Alert,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import React, {useState, useEffect} from 'react';
 import colors from '../assets/constants/colors';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import onCreateChannel from '../utils/NotificationManager';
+import NotificationManager from '../utils/NotificationManager';
 
 const Addmed = () => {
   const [medName, setMedName] = useState('');
@@ -89,13 +90,14 @@ const Addmed = () => {
   };
 
   const submitButton = () => {
+    Alert.alert('Medicine added');
     const obj = {
       title: medName,
       startDate: currentDate,
       timing: timeObj,
       noOfDay: totalDays,
     };
-    onCreateChannel(obj);
+    NotificationManager.onCreateChannel(obj);
     console.log(obj);
   };
   const ResetButton = () => {

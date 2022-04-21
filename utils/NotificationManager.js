@@ -6,7 +6,7 @@ import notifee, {
 } from '@notifee/react-native';
 
 // Function to create channel and notifications
-export default onCreateChannel = async data => {
+const onCreateChannel = async data => {
   const {title, startDate, noOfDay, timing} = data;
   // const date = new Date(Date.now() + 5 * 1000);
   startDate.setHours(0);
@@ -33,6 +33,7 @@ export default onCreateChannel = async data => {
 
 // Function to create a notification
 const onCreateNotification = async (title, date) => {
+  console.log('title', title, date);
   // Create a time-based trigger
   const trigger: TimestampTrigger = {
     type: TriggerType.TIMESTAMP,
@@ -70,3 +71,4 @@ const onCreateNotification = async (title, date) => {
     trigger,
   );
 };
+export default {onCreateNotification, onCreateChannel};

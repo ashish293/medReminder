@@ -12,7 +12,7 @@ import AllIcon from './assets/icons/All.svg';
 import CompleteIcon from './assets/icons/Complete.svg';
 import colors from './assets/constants/colors';
 import SplashScreen from 'react-native-splash-screen';
-import onCreateNotification from './utils/NotificationManager';
+import NotificationManager from './utils/NotificationManager';
 import notifee, {
   TimestampTrigger,
   TriggerType,
@@ -22,18 +22,20 @@ import notifee, {
 
 notifee.onBackgroundEvent(async ({type, detail}) => {
   // console.log('detail', detail);
+  const title = detail.notification.title;
   if (type === EventType.PRESS) {
-    console.log('User pressed the notification.', detail.pressAction.id);
+    console.log('User pressed the notification.', detail);
   } else if (type === EventType.ACTION_PRESS) {
+    console.log('detail', detail);
     switch (detail.pressAction.id) {
       case 'confirm':
         console.log('User pressed confirm.');
         break;
       case 'snooze':
         console.log('User pressed snooze.');
-        onCreateNotification(
-          detail.pressAction.id,
-          1,
+        console.log(title);
+        NotificationManager.onCreateNotification(
+          title,
           new Date(Date.now() + 5 * 1000),
         );
         break;
@@ -44,18 +46,20 @@ notifee.onBackgroundEvent(async ({type, detail}) => {
 });
 notifee.onForegroundEvent(async ({type, detail}) => {
   // console.log('detail', detail);
+  const title = detail.notification.title;
   if (type === EventType.PRESS) {
-    console.log('User pressed the notification.', detail.pressAction.id);
+    console.log('User pressed the notification.', detail);
   } else if (type === EventType.ACTION_PRESS) {
+    console.log('detail', detail);
     switch (detail.pressAction.id) {
       case 'confirm':
         console.log('User pressed confirm.');
         break;
       case 'snooze':
         console.log('User pressed snooze.');
-        onCreateNotification(
-          detail.pressAction.id,
-          1,
+        console.log(title);
+        NotificationManager.onCreateNotification(
+          title,
           new Date(Date.now() + 5 * 1000),
         );
         break;
