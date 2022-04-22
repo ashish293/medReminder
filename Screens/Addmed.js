@@ -102,8 +102,14 @@ const Addmed = () => {
       noOfDay: totalDays,
     };
     console.log(obj);
-    NotificationManager.onCreateChannel(obj);
-    Alert.alert('Medicine added');
+    NotificationManager.onCreateChannel(obj)
+      .then(res => {
+        console.log(res);
+        Alert.alert('Medicine added');
+      })
+      .catch(err => {
+        console.log(err);
+      });
     resetButton();
   };
 
@@ -138,11 +144,13 @@ const Addmed = () => {
             placeholder=" Enter Medicine Name"
             value={medName}
             onChangeText={setMedName}
+            placeholderTextColor="#9c9c9c"
           />
           <View style={styles.selectContainer}>
             <Text style={styles.selectHeading}>Select Frequency : </Text>
             <View style={styles.selectBox}>
               <Picker
+                dropdownIconColor={'black'}
                 selectedValue={frequency}
                 onValueChange={value => {
                   setFrequency(value);
@@ -160,7 +168,7 @@ const Addmed = () => {
                     });
                   }
                 }}
-                style={{height: 30, width: 135}}>
+                style={{height: 30, width: 135, color: 'black'}}>
                 {/* <Picker.Item label='Select' value={0} /> */}
                 <Picker.Item label="Daily" value={0} />
                 <Picker.Item label="Weekly" value={1} />
@@ -215,6 +223,7 @@ const Addmed = () => {
             <Text style={styles.selectHeading}>Doses Per Day : </Text>
             <View style={styles.selectBox}>
               <Picker
+                dropdownIconColor={'black'}
                 selectedValue={doses}
                 onValueChange={value => {
                   setDoses(value);
@@ -222,7 +231,7 @@ const Addmed = () => {
                     new Array(parseInt(value)).fill({hours: 0, minutes: 0}),
                   );
                 }}
-                style={{height: 30, width: 130}}>
+                style={{height: 30, width: 130, color: 'black'}}>
                 <Picker.Item label="Select" value="0" />
                 <Picker.Item label="1" value="1" />
                 <Picker.Item label="2" value="2" />
@@ -290,6 +299,7 @@ const Addmed = () => {
               onChangeText={value => totalDaysInput(value)}
               value={totalDays}
               keyboardType="number-pad"
+              placeholderTextColor="#9c9c9c"
             />
           </View>
 
@@ -408,7 +418,9 @@ const styles = StyleSheet.create({
     padding: 6,
     width: '50%',
   },
-  timeInputText: {},
+  timeInputText: {
+    color: 'black',
+  },
   startingDateContainer: {
     marginTop: 20,
     alignItems: 'center',

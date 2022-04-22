@@ -73,6 +73,10 @@ const App = () => {
   const Tab = createBottomTabNavigator();
   useEffect(() => {
     SplashScreen.hide();
+    Alert.alert(
+      'For Redmi device-',
+      'Turn on Autostart in app info, otherwise app will not work properly',
+    );
   });
 
   return (
